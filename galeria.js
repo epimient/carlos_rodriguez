@@ -1,27 +1,34 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.btn-filter');
-    const items = document.querySelectorAll('.portfolio-item');
+// Obtener todos los botones de filtro y las imágenes de la galería
+const filterButtons = document.querySelectorAll('.btn-filter');
+const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-    // Mostrar todos los elementos al cargar la página
-    items.forEach((item) => {
-        item.classList.add('show');
+// Función para filtrar elementos de la galería
+function filterPortfolio(category) {
+    portfolioItems.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+            item.style.display = 'block'; // Muestra el elemento
+        } else {
+            item.style.display = 'none'; // Oculta el elemento
+        }
     });
+}
 
-    buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            const filter = button.getAttribute('data-filter');
+// Agregar evento a cada botón de filtro
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Eliminar la clase 'active' de todos los botones
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Agregar la clase 'active' al botón clickeado
+        button.classList.add('active');
 
-            // Manejo de clases activas en los botones
-            buttons.forEach((btn) => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Filtrar elementos
-            items.forEach((item) => {
-                item.classList.remove('show'); // Ocultar todos los elementos
-                if (filter === 'all' || item.classList.contains(filter)) {
-                    item.classList.add('show'); // Mostrar los elementos que coincidan con el filtro
-                }
-            });
-        });
+        // Filtrar la galería según la categoría seleccionada
+        const filterCategory = button.getAttribute('data-filter');
+        filterPortfolio(filterCategory);
     });
+});
+
+// Inicializar la galería mostrando todos los elementos al cargar la página
+window.addEventListener('load', () => {
+    filterPortfolio('all'); // Muestra todo por defecto
 });

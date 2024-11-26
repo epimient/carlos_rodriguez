@@ -8,7 +8,7 @@ body {
 /* Hero Section */
 .hero-section {
     height: 100vh;
-    background: url('./img/city.jpg') no-repeat center center/cover;
+    background: url('./img/city.webp') no-repeat center center/cover;
     color: #e0e0e0;
     position: relative;
 }
@@ -398,62 +398,7 @@ body {
     border-radius: 50%;
 }
 
-/* Ajustes de la galería */
-.portfolio-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-/* Imágenes con efecto */
-.portfolio-img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    cursor: pointer;
-}
-
-.portfolio-img:hover {
-    transform: scale(1.1); /* Efecto de movimiento */
-    filter: brightness(80%);
-}
-
-/* Ocultar los elementos no filtrados */
-.portfolio-item {
-    display: none; /* Por defecto oculto */
-}
-
-.portfolio-item.show {
-    display: block; /* Mostrar los elementos filtrados */
-}
-
-/* Botones de filtro */
-.btn-filter {
-    margin: 0 10px;
-    border: none;
-    background-color: transparent;
-    font-size: 1rem;
-    color: #e0e0e0;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.btn-filter:hover,
-.btn-filter.active {
-    color: #FF00FF; /* Fucsia */
-}
-
-.portfolio-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px; /* Espacio entre elementos */
-}
-
-.portfolio-item {
-    display: block; /* No uses flex aquí */
-}
-
-/* Estilo de Contacto */
+/* Sección de contacto */
 .contact-section {
     background-color: #000000;
     padding: 60px 0;
@@ -521,5 +466,94 @@ input.form-control:focus {
     }
     50% {
         border-color: #FF00FF; /* Cursor visible */
+    }
+}
+
+/* Galería - Contenedor de la galería */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre las imágenes */
+    justify-content: center;
+    padding: 30px 0;
+}
+
+/* Cada elemento de la galería */
+.gallery-item {
+    position: relative;
+    width: 300px; /* Ancho fijo para cada imagen */
+    height: 200px; /* Alto fijo para cada imagen */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Imágenes dentro de la galería */
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen llene el contenedor sin deformarse */
+}
+
+/* Contenido de la imagen - Títulos o descripciones */
+.gallery-info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    text-align: center;
+}
+
+/* Mostrar el texto al pasar el ratón sobre la imagen */
+.gallery-item:hover .gallery-info {
+    display: block;
+}
+
+/* Filtros de categorías */
+.gallery-filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.gallery-filter button {
+    background-color: #1a1a1a;
+    border: none;
+    color: #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.gallery-filter button:hover,
+.gallery-filter button.active {
+    background-color: #00BFFF; /* Azul neón */
+    color: #fff;
+}
+
+/* Galería - Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .gallery-item {
+        width: 45%; /* Dos elementos por fila en pantallas medianas */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        width: 100%; /* Un solo elemento por fila en pantallas pequeñas */
     }
 }
